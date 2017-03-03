@@ -1,2 +1,2 @@
 # CodeFight
-Me Effort on Beating some of CodeFight Challenges
+My Effort on Beating some of CodeFight Challenges
