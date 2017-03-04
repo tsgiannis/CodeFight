@@ -1,9 +1,8 @@
 string reverseParentheses(string s) {
 Stack parStack = new Stack();
-			String tmp;
-			bool LastSet=false;
-			int j;
-			int lastPosition = 0;
+			
+			bool firstOpeningParentheseFound=false;
+			int firstOpeningParenthese = 0;
 			var arr = s.ToCharArray();
 			StringBuilder result = new StringBuilder();
 			for (int i = 0; i < arr.Length; i++) {
@@ -14,17 +13,17 @@ Stack parStack = new Stack();
 					for (;;) {
 						if (arr[i] == '('){
 							parStack.Push(arr[i]);
-							if(LastSet ==false){
-								lastPosition=i;
-								LastSet = true;
+							if(firstOpeningParentheseFound ==false){
+								firstOpeningParenthese=i;
+								firstOpeningParentheseFound = true;
 							}
 						}
 						else if (arr[i] == ')' & parStack.Count>0)
 							parStack.Pop();
 						
 						if (parStack.Count == 0){
-							result.Append( reverseParentheses(Reverse(s.Substring(lastPosition+1, i-(lastPosition+1)))));
-							LastSet = false;
+							result.Append( reverseParentheses(Reverse(s.Substring(firstOpeningParenthese+1, i-(firstOpeningParenthese+1)))));
+							firstOpeningParentheseFound = false;
 							break;
 						}
 						i++;
@@ -32,8 +31,8 @@ Stack parStack = new Stack();
 				
 				}
 			}
-			string finals = result.ToString();
-			return finals;
+			string finalString = result.ToString();
+			return finalString;
 		}
 		
  string Reverse(string s)
